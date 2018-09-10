@@ -5,6 +5,7 @@ class Character
   float charSpeed;
   float charWidth;
   float charHeight;
+  color charColor;
   boolean[] keysPressed;
   
   Character()
@@ -14,6 +15,7 @@ class Character
     charSpeed = 5;
     charWidth = 50;
     charHeight = 50;
+    charColor = color(0);
     
     // 0 = w, 1 = d, 2 = s, 3 = a
     keysPressed = new boolean[4];
@@ -31,6 +33,7 @@ class Character
   
   void draw()
   {
+    fill(charColor);
     rect(charXPos, charYPos, charWidth, charHeight);
   }
   
