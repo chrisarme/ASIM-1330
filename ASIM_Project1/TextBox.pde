@@ -1,17 +1,46 @@
 class TextBox
 {
   String textBoxString;
-  String[] textBoxStringArray;
+  String[] textBoxStringArray = new String[8];
+  ArrayList<String> displayTextArray;
+  boolean isTextBoxVisible;
   
   TextBox()
   {
     textBoxString = "";
     textBoxStringArray = new String[8];
-    updateTextBox();
+    displayTextArray = new ArrayList<String>();
+    isTextBoxVisible = false;
     
-    for(int i = 0; i < 8; i++)
+    updateTextBox();
+  }
+  
+  TextBox(String[] texts)
+  {
+    //textBoxString = "";
+    textBoxStringArray = new String[8];
+    displayTextArray = new ArrayList<String>();
+    isTextBoxVisible = false;
+    
+    updateTextBox();
+
+    for (String text : texts)
     {
-      textBoxStringArray[i] = "";
+      displayTextArray.add(text);
+    }
+  }
+  
+  void mainControl()
+  {
+    if (isTextBoxVisible == true)
+    {
+      drawTextBox();
+      displayText();
+    
+      if(frameCount % 30 == 0)
+      {
+        updateTextBox();
+      }
     }
   }
   
@@ -25,6 +54,20 @@ class TextBox
     text(textBoxString, 50, height - 200);
     //println(textBoxStringArray);
     
+  }
+  
+  void displayText()
+  {
+    textSize(20);
+    if (displayTextArray.size() > 0)
+    {
+      text(displayTextArray.get(0), 60, height - 190);
+    }
+  }
+  
+  void addText(String text)
+  {
+    displayTextArray.add(text);
   }
   
   void updateTextBox()
@@ -80,6 +123,18 @@ class TextBox
     }
     
     //println(textBoxStringArray[7]);
+  }
+  
+  void checkKeyPressed()
+  {
+    if (isTextBoxVisible == false)
+      {
+        isTextBoxVisible = true;
+      }
+      else if (isTextBoxVisible == true)
+      {
+        isTextBoxVisible = false;
+      }
   }
   
   char getRandomCharacter()

@@ -7,6 +7,7 @@ class Character
   float charHeight;
   color charColor;
   boolean[] keysPressed;
+  boolean canOtherKeysBePressed;
   
   Character()
   {
@@ -24,6 +25,8 @@ class Character
     {
       keysPressed[i] = false;
     }
+    
+    canOtherKeysBePressed = true;
   }
   
   void update()
@@ -39,26 +42,34 @@ class Character
   
   void checkKeyPressed(char key)
   {
-    if (key == 'w')
+    if (canOtherKeysBePressed == true)
     {
-      keysPressed[0] = true;
-    }
-    else if (key == 'd')
-    {
-      keysPressed[1] = true;
-    }
-    else if (key == 's')
-    {
-      keysPressed[2] = true;
-    }
-    else if (key == 'a')
-    {
-      keysPressed[3] = true;
+      if (key == 'w')
+      {
+        keysPressed[0] = true;
+      }
+      else if (key == 'd')
+      {
+        keysPressed[1] = true;
+      }
+      else if (key == 's')
+      {
+        keysPressed[2] = true;
+      }
+      else if (key == 'a')
+      {
+        keysPressed[3] = true;
+      }
     }
   }
   
   void checkKeyReleased(char key)
   {
+    if (canOtherKeysBePressed == false)
+    {
+      canOtherKeysBePressed = true;
+    }
+    
     if (key == 'w')
     {
       keysPressed[0] = false;
