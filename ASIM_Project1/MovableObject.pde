@@ -62,25 +62,25 @@ class MovableObject
       //top of obj check > bottom check > left check > right check
       if ((player.charYPos + player.charHeight > yPos && player.charYPos < yPos && player.keysPressed[2]) && (player.charXPos < xPos + objWidth && player.charXPos > xPos - player.charWidth))
       {
-        yPos += 5;
+        yPos += 6 - (objWidth / 50);
         player.charYPos = yPos - player.charHeight;
         player.canOtherKeysBePressed = false;
       }
       else if ((player.charYPos < yPos + objHeight && player.charYPos > yPos && player.keysPressed[0]) && (player.charXPos < xPos + objWidth && player.charXPos > xPos - player.charWidth))
       {
-        yPos -= 5;
+        yPos -= 6 - (objWidth / 50);
         player.charYPos = yPos + objHeight;
         player.canOtherKeysBePressed = false;
       }
       else if ((player.charXPos + player.charWidth > xPos && player.charXPos < xPos && player.keysPressed[1]) && (player.charYPos < yPos + objHeight && player.charYPos > yPos - player.charHeight))
       {
-        xPos += 5;
+        xPos += 6 - (objWidth / 50);
         player.charXPos = xPos - player.charWidth;
         player.canOtherKeysBePressed = false;
       }
       else if ((player.charXPos < xPos + objWidth && player.charXPos > xPos && player.keysPressed[3]) && (player.charYPos < yPos + objHeight && player.charYPos > yPos - player.charHeight))
       {
-        xPos -= 5;
+        xPos -= 6 - (objWidth / 50);
         player.charXPos = xPos + objWidth;
         player.canOtherKeysBePressed = false;
     }
@@ -116,10 +116,10 @@ class MovableObject
           //wall.canOtherKeysBePressed = false;
           movable = false;
         }
-        else if ((wall.xPos < xPos + objWidth && wall.xPos > xPos && player.keysPressed[3]) && (wall.yPos < yPos + objHeight && wall.yPos > yPos - wall.wallHeight))
+        else if ((wall.xPos < xPos + objWidth && wall.xPos + wall.wallWidth > xPos && player.keysPressed[3]) && (wall.yPos < yPos + objHeight && wall.yPos > yPos - wall.wallHeight))
         {
           //xPos -= 5;
-          //player.xPos = xPos + objWidth;
+          xPos = wall.xPos + wall.wallWidth;
           //player.canOtherKeysBePressed = false;
           movable = false;
         }

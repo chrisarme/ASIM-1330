@@ -11,8 +11,8 @@ class Character
   
   Character()
   {
-    charXPos = 70;
-    charYPos = 70.;
+    charXPos = 100;
+    charYPos = 100;
     charSpeed = 5;
     charWidth = 50;
     charHeight = 50;
@@ -44,19 +44,19 @@ class Character
   {
     if (canOtherKeysBePressed == true)
     {
-      if (key == 'w')
+      if (key == 'w' || keyCode == UP)
       {
         keysPressed[0] = true;
       }
-      else if (key == 'd')
+      else if (key == 'd' || keyCode == RIGHT)
       {
         keysPressed[1] = true;
       }
-      else if (key == 's')
+      else if (key == 's' || keyCode == DOWN)
       {
         keysPressed[2] = true;
       }
-      else if (key == 'a')
+      else if (key == 'a' || keyCode == LEFT)
       {
         keysPressed[3] = true;
       }
@@ -70,19 +70,19 @@ class Character
       canOtherKeysBePressed = true;
     }
     
-    if (key == 'w')
+    if (key == 'w' || keyCode == UP)
     {
       keysPressed[0] = false;
     }
-    else if (key == 'd')
+    else if (key == 'd' || keyCode == RIGHT)
     {
       keysPressed[1] = false;
     }
-    else if (key == 's')
+    else if (key == 's' || keyCode == DOWN)
     {
       keysPressed[2] = false;
     }
-    else if (key == 'a')
+    else if (key == 'a' || keyCode == LEFT)
     {
       keysPressed[3] = false;
     }

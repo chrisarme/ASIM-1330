@@ -10,7 +10,7 @@ class TextBox
     textBoxString = "";
     textBoxStringArray = new String[8];
     displayTextArray = new ArrayList<String>();
-    isTextBoxVisible = false;
+    isTextBoxVisible = true;
     
     updateTextBox();
   }
@@ -20,7 +20,7 @@ class TextBox
     //textBoxString = "";
     textBoxStringArray = new String[8];
     displayTextArray = new ArrayList<String>();
-    isTextBoxVisible = false;
+    isTextBoxVisible = true;
     
     updateTextBox();
 
@@ -37,7 +37,7 @@ class TextBox
       drawTextBox();
       displayText();
     
-      if(frameCount % 30 == 0)
+      if((frameCount % 30 == 0) && transitionState == 0)
       {
         updateTextBox();
       }
@@ -61,7 +61,7 @@ class TextBox
     textSize(20);
     if (displayTextArray.size() > 0)
     {
-      text(displayTextArray.get(0), 60, height - 190);
+      text(displayTextArray.get(0), 75, height - 170);
     }
   }
   
@@ -127,13 +127,22 @@ class TextBox
   
   void checkKeyPressed()
   {
-    if (isTextBoxVisible == false)
+    //if (isTextBoxVisible == false)
+    //  { //<>//
+    //    isTextBoxVisible = true;
+    //  }
+      if (isTextBoxVisible == true)
       {
-        isTextBoxVisible = true;
-      }
-      else if (isTextBoxVisible == true)
-      {
-        isTextBoxVisible = false;
+        if (displayTextArray.size() > 1)
+        {
+          displayTextArray.remove(0);
+        }
+        else
+        {
+          isTextBoxVisible = false;
+        }
+        
+        textSound.play(0);
       }
   }
   
