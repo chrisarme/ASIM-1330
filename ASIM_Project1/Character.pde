@@ -5,9 +5,11 @@ class Character
   float charSpeed;
   float charWidth;
   float charHeight;
-  color charColor;
+  float charColor;
   boolean[] keysPressed;
   boolean canOtherKeysBePressed;
+  
+  float sinNum;
   
   Character()
   {
@@ -16,7 +18,7 @@ class Character
     charSpeed = 5;
     charWidth = 50;
     charHeight = 50;
-    charColor = color(0);
+    charColor = 0;
     
     // 0 = w, 1 = d, 2 = s, 3 = a
     keysPressed = new boolean[4];
@@ -36,8 +38,19 @@ class Character
   
   void draw()
   {
-    fill(charColor);
+    fill(color(charColor));
     rect(charXPos, charYPos, charWidth, charHeight);
+    
+    charColor = 125 + (sin(sinNum) * 100);
+    
+    if (sinNum < TWO_PI)
+    {
+      sinNum += .01;
+    }
+    else
+    {
+      sinNum = 0;
+    }
   }
   
   void checkKeyPressed(char key)

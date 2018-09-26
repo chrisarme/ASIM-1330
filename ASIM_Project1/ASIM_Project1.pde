@@ -34,6 +34,8 @@ int aboutAlpha = 1;
 boolean aboutVisible = false;
 int aboutTransitionState = 0;
 
+
+
 void setup()
 {
   fullScreen();
