@@ -11,8 +11,8 @@ class Character
   
   Character()
   {
-    charXPos = 50;
-    charYPos = 50;
+    charXPos = 70;
+    charYPos = 70.;
     charSpeed = 5;
     charWidth = 50;
     charHeight = 50;

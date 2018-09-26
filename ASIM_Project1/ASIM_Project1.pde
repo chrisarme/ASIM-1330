@@ -3,12 +3,12 @@
 
 Character player;
 ArrayList<MovableObject> puzzleObjects;
-//ArrayList<ObjectGoal> puzzleGoals;
+//ArrayLis t<ObjectGoal> puzzleGoals;
 
 ArrayList<MassWall> wallArray;
 
-MassWall testWall;
-MassWall testBlock;
+//MassWall wallArray;
+//MassWall testBlock;
 
 TextBox textBox;
 
@@ -47,7 +47,17 @@ void draw()
         lvlSetupComplete[0] = true;
       }
       
-      testLvlDraw();
+      currentLvlDraw();
+    break;
+    
+    case 2: 
+      if (lvlSetupComplete[1] == false)
+      {
+        testLvlSetup();
+        lvlSetupComplete[1] = true;
+      }
+      
+      currentLvlDraw();
     break;
   }
 }
@@ -75,13 +85,18 @@ void testLvlSetup()
   //puzzleGoals = new ArrayList<ObjectGoal>();
   
   wallArray = new ArrayList<MassWall>();
+  wallArray.add(new MassWall(0, 0, 55, 55, 1, 35, color(50)));
+  wallArray.add(new MassWall(0, 0, 55, 55, 20, 1, color(50)));
+  wallArray.add(new MassWall(width - 55, 0, 55, 55, 20, 1, color(50)));
+  wallArray.add(new MassWall(0, height - 55, 55, 55, 1, 35, color(50)));
   
-  testWall = new MassWall(800, 500, 50, 50, 2, 2, color(50));
-  testWall.wallSetup();
   
-  testBlock = new MassWall(0, 0, 50, 50, 1, 10, color(50));
-  testBlock.wallSetup();
- 
+  wallArray.add(new MassWall(800, 500, 200, 200, 2, 2, color(50)));
+  
+  for (int i = 0; i < wallArray.size(); i++)
+  {
+    wallArray.get(i).wallSetup();
+  }
   
   for (int i = 0; i < 2; i++)
   {
@@ -97,15 +112,52 @@ void testLvlSetup()
   textBox = new TextBox(testString);
   textBox.updateTextBox();
 }
-void testLvlDraw()
+
+void lvl1Setup()
+{
+  player = new Character();
+  
+  puzzleObjects = new ArrayList<MovableObject>();
+  //puzzleGoals = new ArrayList<ObjectGoal>();
+  
+  wallArray = new ArrayList<MassWall>();
+  
+  wallArray.add(new MassWall(0, 0, 55, 55, 1, 35, color(50)));
+  wallArray.add(new MassWall(0, 0, 55, 55, 20, 1, color(50)));
+  wallArray.add(new MassWall(width - 55, 0, 55, 55, 20, 1, color(50)));
+  wallArray.add(new MassWall(0, height - 55, 55, 55, 1, 35, color(50)));
+  
+  for (int i = 0; i < wallArray.size(); i++)
+  {
+    wallArray.get(i).wallSetup();
+  }
+  
+  for (int i = 0; i < 2; i++)
+  {
+    puzzleObjects.add(new MovableObject(200 * (i + 1), 200 * (i + 1), 50 * (i + 1), 50 * (i + 1), color(255, 0, 0)));
+    puzzleObjects.get(puzzleObjects.size() - 1).setupGoal(new ObjectGoal(300 * (i + 1), 300 * (i + 1), 50 * (i + 1), 50 * (i + 1), color(0, 0, 255)));
+    //puzzleGoals.add(new ObjectGoal(300 * (i + 1), 300 * (i + 1), 50, 50, color(0, 0, 255)));
+  }
+  
+  String[] testString = new String[2];
+  testString[0] = ("This is a test text string");
+  testString[1] = ("#$%^&*()@#$%^&*()_@#$%^&*()");
+  
+  textBox = new TextBox(testString);
+  textBox.updateTextBox();
+}
+
+void currentLvlDraw()
 {
   background(150);
     
     player.update();
     player.moveCharacter();
      
-    testWall.massCollisionCheck();
-    testBlock.massCollisionCheck();
+   for (int i = 0; i < wallArray.size(); i++)
+   {
+     //wallArray.get(i).massCollisionCheck();
+   }
      
     for (int i = 0; i < puzzleObjects.size(); i++)
     {
@@ -117,6 +169,7 @@ void testLvlDraw()
       if(!puzzleObjects.get(i).isGoalCompleted)
       {
         puzzleObjects.get(i).collisionWithCharacter();
+        puzzleObjects.get(i).collisionWithWalls();
         
         if (puzzleObjects.get(i).checkObject())
         {
@@ -129,8 +182,11 @@ void testLvlDraw()
     }
      
      player.draw();
-     testWall.draw();
-     testBlock.draw();
+     
+   for (int i = 0; i < wallArray.size(); i++)
+   {
+     wallArray.get(i).draw();
+   }
      
      textBox.mainControl();
 }
