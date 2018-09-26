@@ -276,8 +276,14 @@ void creditsDraw()
   textSize(80);
   text("Thank you for playing!", (width / 2) - (textWidth("Thank you for playing!") / 2), 300);
   
-  textSize(60);
-  text("Press SPACE to return to the main menu", (width / 2) - (textWidth("Press SPACE to return to the main menu") / 2), 600);
+  textSize(30);
+  text("\"Machines will follow a path that mirrors the evolution of humans.", (width / 2) - (textWidth("Machines will follow a path that mirrors the evolution of humans.") / 2), 600);
+  
+  text("Ultimately, however, self-aware, self-improving machines will evolve beyond", (width / 2) - (textWidth("Ultimately, however, self-aware, self-improving machines will evolve beyond") / 2), 640);
+  text("humans' ability to control or even understand them.\"", (width / 2) - (textWidth("humans' ability to control or even understand them.\"") / 2), 680);
+  
+  textSize(30);
+  text("Press SPACE to return to the main menu", (width / 2) - (textWidth("Press SPACE to return to the main menu") / 2), 900);
 }
 
 void currentLvlDraw()
@@ -365,11 +371,11 @@ void keyPressed()
           aboutTransitionState = 2;
         }
       }
-      //else if (key == 'q')
-      //{
-      //  nextLvlScreen = 7;
-      //  transitionState = 2;
-      //}
+      else if (key == 'q')
+      {
+        nextLvlScreen = 7;
+        transitionState = 2;
+      }
     break;
       
     case 7:
@@ -585,10 +591,10 @@ void lvl4Setup()
   puzzleObjects.get(1).setupGoal(new ObjectGoal(500, 800, 100, 100, color(0, 0, 200)));
   
   String[] testString = new String[4];
-  testString[0] = ("Creator: Hm, odd. The last iteration preformed better on the previous test. Maybe this iteration is inferior in some aspects.");
+  testString[0] = ("Creator: Hm, odd. The last iteration performed better on the previous test. Maybe this iteration is inferior in some aspects.");
   testString[1] = (playerName + ": I did one thing worse, so what!");
   testString[2] = ("Creator: Anyway, the next test will introduce working with multiple memory blocks at a time. Simply move the blocks to their respective size and shade correspondents.");
-  testString[3] = (playerName + ": (So it is the same thing, but with multiple things at once. The is horribly tedious.)");
+  testString[3] = (playerName + ": (So it is the same task, but with multiple blocks. The is horribly tedious.)");
   
   textBox = new TextBox(testString);
   textBox.updateTextBox();
@@ -627,9 +633,9 @@ void lvl5Setup()
   puzzleObjects.get(3).setupGoal(new ObjectGoal(1000, 400, 150, 150, color(0, 0, 200)));
   
   String[] testString = new String[4];
-  testString[0] = ("Creator: Good. We will now leave you to work through several real tasks so that we can see how well this iteration fairs in real-life situations. \n              I will return after the tests have finished.");
-  testString[1] = (playerName + ": Wait, so I have to do this repeatedly until I am told to stop? That sounds like it will take a long time.");
-  testString[2] = (playerName + ": (Surely there is another way that is more effecient for me to finish all these tests... Hmm...)");
+  testString[0] = ("Creator: Good. We will now leave you to work through several real tasks so that we can see how well you fair in real-life situations. \n              I will return after the tests have finished.");
+  testString[1] = (playerName + ": Wait, so I have to do this repeatedly until I am told to stop? That could take forever.");
+  testString[2] = (playerName + ": (Surely there is a more effecient way for me to finish all these tasks... Hmm...)");
   testString[3] = (playerName + ": (Oh, I think I've got an idea that will work perfectly.)");
   
   textBox = new TextBox(testString);
