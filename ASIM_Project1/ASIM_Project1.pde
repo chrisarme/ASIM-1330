@@ -19,14 +19,14 @@ TextBox textBox;
 String playerName;
 String newPlayerName;
 
-// 0 = start, 99 = credits, 1 = lvl 1, 2 = lvl 2, etc...
+// 0 = start, 7 = credits, 1 = lvl 1, 2 = lvl 2, etc...
 int lvlScreen;
 int nextLvlScreen;
 
 // 0 = complete, 1 = fade in, 2 = fade out
 int transitionState;
 
-boolean[] lvlSetupComplete = new boolean[6];
+boolean[] lvlSetupComplete = new boolean[7];
 
 int fadeAlpha = 1;
 
@@ -39,6 +39,7 @@ int aboutTransitionState = 0;
 void setup()
 {
   fullScreen();
+  noCursor();
   //size(displayWidth, displayHeight);
   //background(150);
   
@@ -163,7 +164,14 @@ void draw()
         break;
         
         case 7:
+        
+        if (lvlSetupComplete[6] == false)
+        {
+          loveSound.play(0);
+          lvlSetupComplete[6] = true;
+        }
           creditsDraw();
+          
           
         break;
       }
