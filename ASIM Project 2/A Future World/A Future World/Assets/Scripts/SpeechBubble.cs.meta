@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+guid: a68d730661979c840b20e068b80edbc7
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - speechBubble: {fileID: 100000, guid: ef6178546f77bc546af127fb4c56da0c, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
